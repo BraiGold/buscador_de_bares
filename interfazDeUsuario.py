@@ -3,7 +3,6 @@ from listaBares import ListaDeBares
 class InterfazDeUsuario:
     def __init__(self,db):
         self.listaDeBares = ListaDeBares(db)
-        print self.listaDeBares.Habilitados()
 
     def menuInicial(self):
         print "seleccione la accion a realizar: "

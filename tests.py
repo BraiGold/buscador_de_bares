@@ -37,13 +37,12 @@ class Tests:
 		
 
 	def testDarDeAlta(self):
-		self.testAgregar()
 		print '\n\n'
 		print 'Test de dar de alta un bar.\n'
 		inhab = self.listaBares.inhabilitados()
-		bar0 = inhab[0]
-		bar2 = inhab[2]
-		bar3 = inhab[3]
+		bar0 = inhab[len(inhab)-4]
+		bar2 = inhab[len(inhab)-2]
+		bar3 = inhab[len(inhab)-1]
 		self.listaBares.darDeAlta(bar0)
 		self.listaBares.darDeAlta(bar2)
 		todobien0 = 1
@@ -82,9 +81,8 @@ class Tests:
 					print 'Bar 4 fue habilitado correctamente'
 
 	def testBuscarBaresCercanos(self):
-		self.testDarDeAlta()
 		habili = self.listaBares.Habilitados()
-		bar0 = habili[0]
+		bar0 = habili[len(habili)-3]
 		print '\n\nTest de buscar bares cercanos.\n', 'Busco bares cercanos a Av. Callao 400, deberia responder solo Barcito'
 		cercanos0 = self.listaBares.buscarBaresCerca('Av. Callao 400')
 		print '\nLista de bares cercanos:\n', cercanos0

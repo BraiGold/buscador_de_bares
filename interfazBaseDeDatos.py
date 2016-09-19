@@ -10,10 +10,10 @@ class InterfazBaseDeDatos:
             direccion = linea[1]
             enchufes = linea[2]
             descripcion = linea[3]
-            wifi = linea[4]
+            wifi = int(linea[4])
             habilitado = linea[5]
-            if habilitado == habil:
-                bar = Bar( nombre, direccion, enchufes, descripcion )
+            if int(habilitado) == int(habil):
+                bar = Bar( nombre, direccion, enchufes, descripcion, wifi )
                 bares.append(bar)
         return bares
 

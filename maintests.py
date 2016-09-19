@@ -6,4 +6,6 @@ from listaBares import ListaDeBares
 from tests import Tests
 db = "file.txt"
 test = Tests(db)
+test.testAgregar()
+test.testDarDeAlta()
 test.testBuscarBaresCercanos()

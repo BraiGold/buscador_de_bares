@@ -1,5 +1,7 @@
-Barcito--Av. Callao 493--4--El bar mas bonito.--1--1
-Hola Mundo--Avellaneda 621--1--Todos son bienvenidos.--1--1
-Las Tortas--Av. Corrientes 948--4--Nuestra comida es la mejor de la ciudad.--1--1
-Nuevo--Honduras 4095--1--Estamos cerca tuyo.--1--1
-Tragos--Araoz 1274--2--Ambientes tranquilo para estudiar.--0--0
+Uri14--Avenida Corrientes 5000--123--Uri es un capo--1--1
+Uri14--Avenida Corrientes 3900--123--Uri es un capo--1--1
+Uri14--Avenida Corrientes 4100--123--Uri es un capo--1--1
+Uri14--Avenida Corrientes 4200--123--Uri es un capo--1--1
+Uri14--Avenida Corrientes 4000--123--Uri es un capo--1--1
+Uri123--Avenida Cordoba 3100--123123--Hola--1--1
+Uri3--Avenida Cordoba 3111--12344--Holaaa--1--1
