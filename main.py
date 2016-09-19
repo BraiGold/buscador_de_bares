@@ -7,7 +7,19 @@ while 1:
     print '1-Para agregar un bar.\n2-Para buscar los bares cercanos.\n3-Para dar de alta un bar.\n9-Para salir'
     op = input()
     if op == 1:
-        agregarBar(  )
+        var = 1
+        nom = 'a'
+        dire = 'a'
+        hora = 'a'
+        calif = 1
+        wifi = 1
+        enchuf = 1
+        ruido = 1
+        com = 1
+        aten = 1
+        pre = 1
+        banos = 1
+        agregarBar( var, nom, dire, hora, calif, wifi, enchuf, ruido, com, aten, pre, banos )
     elif op == 2:
         print 'Bares cercanos\n\n'
     elif op == 3:
