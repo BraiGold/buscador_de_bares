@@ -21,9 +21,12 @@ class ListaDeBares:
         interfazMaps=InterfazMaps()
         baresCercanos=[]
         for bar in self.habilitados:
-            if interfazMaps.distanciaEntreDosPuntos(direccion,bar.direccion()) < 400 :
+            if interfazMaps.distanciaEntreDosPuntos(direccion,bar.direccion()) < 400 and bar.wifi() == 1:
                 baresCercanos.append(bar)
         return baresCercanos
 
     def inhabilitados(self):
         return self.enEspera
+
+    def Habilitados(self):
+        return self.habilitados

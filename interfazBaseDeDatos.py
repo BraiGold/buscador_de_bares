@@ -10,7 +10,8 @@ class InterfazBaseDeDatos:
             direccion = linea[1]
             enchufes = linea[2]
             descripcion = linea[3]
-            habilitado = linea[4]
+            wifi = linea[4]
+            habilitado = linea[5]
             if habilitado == habil:
                 bar = Bar( nombre, direccion, enchufes, descripcion )
                 bares.append(bar)
@@ -33,6 +34,8 @@ class InterfazBaseDeDatos:
             f.write(str(item.enchufes()))
             f.write("--")
             f.write(item.descripcion())
+            f.write("--")
+            f.write(str(item.wifi()))
             f.write("--")
             if habil == 0:
                 f.write("0")

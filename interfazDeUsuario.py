@@ -3,7 +3,7 @@ from listaBares import ListaDeBares
 class InterfazDeUsuario:
     def __init__(self,db):
         self.listaDeBares = ListaDeBares(db)
-        print self.listaDeBares.inhabilitados()
+        print self.listaDeBares.Habilitados()
 
     def menuInicial(self):
         print "seleccione la accion a realizar: "
@@ -20,6 +20,18 @@ class InterfazDeUsuario:
         if entrada !=1 and entrada !=2 and entrada !=3:
             self.menuInicial()
 
+    def ingresarWifi(self):
+        print 'Ingrese Si, si el bar posee WiFi, en caso contrario No'
+        wifi = raw_input()
+        wif = -1
+        if wifi == "Si":
+            wif = 1
+        elif wifi == "No":
+            wif = 0
+        else:
+            self.ingresarWifi()
+        return wif
+
     def menuAgregarBar(self):
         print "Ingrese nombre del bar "
         nombre = raw_input()
@@ -29,7 +41,8 @@ class InterfazDeUsuario:
         enchuf = input()
         print "Ingrese Descripcion"
         desc = raw_input()
-        self.listaDeBares.agregarBar(Bar(nombre,direcc,enchuf,desc))
+        wifi = self.ingresarWifi()
+        self.listaDeBares.agregarBar(Bar(nombre,direcc,enchuf,desc, wifi))
         self.menuInicial()
 
     def menuDarBarDeAlta(self):
@@ -40,6 +53,10 @@ class InterfazDeUsuario:
             print "Nombre: "+ bar.nombre() +""
             print "Direccion"+ bar.direccion()+""
             print "Cantidad de Enchufes:"+str(bar.enchufes()) + ""
+            if int(bar.wifi()) == 1:
+                print "WiFi:"+"Si" + ""
+            else:
+                print "WiFi:"+"No" + ""
             print "Descripcion: "+bar.descripcion() +""
             numeroDeBar=numeroDeBar + 1
         entrada=input()
@@ -53,5 +70,5 @@ class InterfazDeUsuario:
         print "ingrese su direccion actual: "
         direc=raw_input()
         print self.listaDeBares.buscarBaresCerca(direc)
-        raw_input("toca enter para terminar terminar")
+        raw_input("toca enter para terminar")
         self.menuInicial()

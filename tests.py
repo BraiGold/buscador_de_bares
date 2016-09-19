@@ -1,28 +1,107 @@
-from bares import *
+from bar import Bar
+from interfazBaseDeDatos import InterfazBaseDeDatos
+from interfazDeUsuario import InterfazDeUsuario
+from interfazMaps import InterfazMaps
+from listaBares import ListaDeBares
 
-var = 0
-nom = 'El Bar Groso'
-dire = 'Av.Avellaneda 364'
-hora = '10 a 21'
-calif = 4
-wifi = 3
-enchuf = 5
-ruido = 5
-com = 4
-aten = 4
-pre = 5
-banos = 3
-agregarBar( var, nom, dire, hora, calif, wifi, enchuf, ruido, com, aten, pre, banos )
+class Tests:
+	def __init__(self,BD):
+		self.listaBares = ListaDeBares(BD)
+		self.bd = BD
 
-nom1 = 'Tragos'
-dire1 = 'Av.Corrientes 532'
-hora1 = '12 a 23'
-calif1 = 3
-wifi1 = 5
-enchuf1 = 5
-ruido1 = 3
-com1 = 4
-aten1 = 2
-pre1 = 1
-banos1 = 3
-agregarBar( var, nom1, dire1, hora1, calif1, wifi1, enchuf1, ruido1, com1, aten1, pre1, banos1 )
+	def testAgregar(self):
+		print 'Test de agregar bar.\n'
+		bar0 = Bar('Barcito', 'Av. Callao 493', 4, 'El bar mas bonito.', 1)
+		bar1 = Bar('Tragos', 'Araoz 1274', 2, 'Ambientes tranquilo para estudiar.', 0)
+		bar2 = Bar('Hola Mundo', 'Avellaneda 621', 1, 'Todos son bienvenidos.', 1)
+		bar3 = Bar('Las Tortas', 'Av. Corrientes 948', 4, 'Nuestra comida es la mejor de la ciudad.', 1)
+		self.listaBares.agregarBar(bar0)
+		self.listaBares.agregarBar(bar1)
+		self.listaBares.agregarBar(bar2)
+		self.listaBares.agregarBar(bar3)
+		print 'bar 1:', bar0, '\nbar 2:', bar1, '\nbar 3:', bar2, '\nbar 4:', bar3, '\n'
+		bares = self.listaBares.inhabilitados()
+		i = 0
+		for bar in bares:
+			if i == 0 and bar == bar0:
+				print 'Bar 1 se agrega correctamente.'
+			elif i == 1 and bar == bar1:
+				print 'Bar 2 se agrega correctamente.'
+			elif i == 2 and bar == bar2:
+				print 'Bar 3 se agrega correctamente.'
+			elif i == 3 and bar == bar3:
+				print 'Bar 4 se agrega correctamente.'
+			else:
+				print 'Alguno de los bares no fue agregado correctamente.'
+			i += 1
+		
+
+	def testDarDeAlta(self):
+		self.testAgregar()
+		print '\n\n'
+		print 'Test de dar de alta un bar.\n'
+		inhab = self.listaBares.inhabilitados()
+		bar0 = inhab[0]
+		bar2 = inhab[2]
+		bar3 = inhab[3]
+		self.listaBares.darDeAlta(bar0)
+		self.listaBares.darDeAlta(bar2)
+		todobien0 = 1
+		todobien2 = 1
+		for bar in inhab:
+			if bar == bar0:
+				todobien0 = 0
+				print 'Bar 1 no se ha dado de alta correctamente.'
+			if bar == bar2:
+				todobien2 = 0
+				print 'Bar 3 no se ha dado de alta correctamente.'
+		if todobien0:
+			print'Bar 1 habilitado no se encuentra entre los inhabilitados'
+		if todobien2:
+			print'Bar 3 habilitado no se encuentra entre los inhabilitados'
+		hab = self.listaBares.Habilitados()
+		for bar in hab:
+			if bar == bar0:
+				if todobien0:
+					print 'Bar 1 fue habilitado correctamente'
+			if bar == bar2:
+				if todobien2:
+					print 'Bar 3 fue habilitado correctamente'
+		self.listaBares.darDeAlta(bar3)
+		todobien3 = 1
+		for bar in inhab:
+			if bar == bar3:
+				todobien3 = 0
+				print 'Bar 4 no se ha dado de alta correctamente.'
+		if todobien3:
+			print'Bar 4 habilitado no se encuentra entre los inhabilitados'
+		habi = self.listaBares.Habilitados()
+		for bar in habi:
+			if bar == bar3:
+				if todobien3:
+					print 'Bar 4 fue habilitado correctamente'
+
+	def testBuscarBaresCercanos(self):
+		self.testDarDeAlta()
+		habili = self.listaBares.Habilitados()
+		bar0 = habili[0]
+		print '\n\nTest de buscar bares cercanos.\n', 'Busco bares cercanos a Av. Callao 400, deberia responder solo Barcito'
+		cercanos0 = self.listaBares.buscarBaresCerca('Av. Callao 400')
+		print '\nLista de bares cercanos:\n', cercanos0
+		if len(cercanos0) == 1 and cercanos0[0] == bar0:
+			print '\nEl unico bar cercano es Barcito, por lo que busca correctamente\n'
+		print 'Busco bares cerca del que no tiene WiFi, asi que deberia aparecer una lista vacia.'
+		cercanos1 = self.listaBares.buscarBaresCerca('Lavalleja 1475')
+		print '\nLista de bares cercanos:\n', cercanos1
+		if len(cercanos1) == 0:
+			print '\nNo hay bares, por lo que busca correctamente\n'
+		bar4 = Bar('Nuevo', 'Honduras 4095', 1, 'Estamos cerca tuyo.', 1)
+		self.listaBares.agregarBar(bar4)
+		self.listaBares.darDeAlta(bar4)
+		print 'Agrego un nuevo bar cerca del lugar buscado anteriormente.'
+		print 'Bar 5:', bar4
+		print 'Busco bares de vuelta en el mismo lugar, ahora deberia aparecer Nuevo.'
+		cercanos1 = self.listaBares.buscarBaresCerca('Lavalleja 1475')
+		print '\nLista de bares cercanos:\n', cercanos1
+		if len(cercanos1) == 1 and cercanos1[0] == bar4:
+			print '\nEl unico bar cercano es Nuevo, por lo que busca correctamente\n'
