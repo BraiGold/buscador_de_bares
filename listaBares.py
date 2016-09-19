@@ -9,9 +9,11 @@ class ListaDeBares:
         self.habilitados=interfazBaseDeDatos.traerHabilitados(BD)
         self.enEspera=interfazBaseDeDatos.traerInhabilitados(BD)
     def agregarBar(self,bar):
+        interfazBaseDeDatos=InterfazBaseDeDatos()
         self.enEspera.append(bar)
         interfazBaseDeDatos.guardarTodos(self.bD,self.habilitados,self.enEspera)
     def darDeAlta(self,bar):
+        interfazBaseDeDatos=InterfazBaseDeDatos()
         self.enEspera.remove(bar)
         self.habilitados.append(bar)
         interfazBaseDeDatos.guardarTodos(self.bD,self.habilitados,self.enEspera)

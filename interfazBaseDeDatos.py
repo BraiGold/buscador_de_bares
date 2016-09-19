@@ -14,7 +14,7 @@ class InterfazBaseDeDatos:
             if habilitado == habil:
                 bar = Bar( nombre, direccion, enchufes, descripcion )
                 bares.append(bar)
-	    return bares
+        return bares
 
 
     def traerHabilitados(self, file ):
@@ -24,8 +24,8 @@ class InterfazBaseDeDatos:
     def traerInhabilitados(self, file ):
         return self.traerTodos(file, 0)
 
-    def guardarInFile(self, openFile, bares, habil):
-        for item in baresH:
+    def guardarInFile(self, f, bares, habil):
+        for item in bares:
             f.write(item.nombre())
             f.write("--")
             f.write(item.direccion())
@@ -35,12 +35,13 @@ class InterfazBaseDeDatos:
             f.write(item.descripcion())
             f.write("--")
             if habil == 0:
-                f.write(0)
-            f.write(1)
+                f.write("0")
+            else:    
+                f.write("1")
             f.write("\n");
 
 
-    def guardarDatos( self,file, baresH, baresIn):
+    def guardarTodos( self,file, baresH, baresIn):
         f = open(file, 'wb')
         f.seek(0)
         f.truncate()

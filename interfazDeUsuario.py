@@ -3,12 +3,13 @@ from listaBares import ListaDeBares
 class InterfazDeUsuario:
     def __init__(self,db):
         self.listaDeBares = ListaDeBares(db)
+        print self.listaDeBares.inhabilitados()
 
     def menuInicial(self):
-        print "seleccione la accion a realizar: /n"
-        print "1. Agregar Bar /n"
-        print "2. Dar Bar de Alta /n"
-        print "3. Buscar bares cercanos (a menos de 400m) /n"
+        print "seleccione la accion a realizar: "
+        print "1. Agregar Bar "
+        print "2. Dar Bar de Alta "
+        print "3. Buscar bares cercanos (a menos de 400m) "
         entrada = input()
         if entrada == 1:
             self.menuAgregarBar()
@@ -29,24 +30,28 @@ class InterfazDeUsuario:
         print "Ingrese Descripcion"
         desc = raw_input()
         self.listaDeBares.agregarBar(Bar(nombre,direcc,enchuf,desc))
+        self.menuInicial()
 
     def menuDarBarDeAlta(self):
-        print "seleccione el numero de bar a dar de alta(-1 para salir): /n"
+        print "seleccione el numero de bar a dar de alta(-1 para salir): "
         numeroDeBar=0
         for bar in self.listaDeBares.inhabilitados():
-            print str(i) +". "
+            print "BAR ("+str(numeroDeBar) +"). "
             print "Nombre: "+ bar.nombre() +""
             print "Direccion"+ bar.direccion()+""
-            print "Cantidad de Enchufes:"+bar.enchufes() + ""
-            print "Descripcion"+bar.descripcion() +""
+            print "Cantidad de Enchufes:"+str(bar.enchufes()) + ""
+            print "Descripcion: "+bar.descripcion() +""
             numeroDeBar=numeroDeBar + 1
         entrada=input()
-        if entrada >= 0:
-            self.listaDeBares.DarDeAlta(self.listaDeBares.inhabilitados()[numeroDeBar])
+        if entrada >= 0 and entrada < len(self.listaDeBares.inhabilitados()):
+            self.listaDeBares.darDeAlta(self.listaDeBares.inhabilitados()[entrada])
+            self.menuDarBarDeAlta()
         else:
             self.menuInicial()
 
     def menuBaresCercanos(self):
-        print "ingrese su direccion actual: /n"
+        print "ingrese su direccion actual: "
         direc=raw_input()
         print self.listaDeBares.buscarBaresCerca(direc)
+        raw_input("toca enter para terminar terminar")
+        self.menuInicial()

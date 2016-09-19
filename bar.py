@@ -4,11 +4,15 @@ class Bar( object ):
         self.Direccion = direc
         self.Enchufes = enchufes
         self.Descripcion = descr
-    def nombre(  ):
+    def nombre( self ):
         return self.Nombre
-    def direccion(  ):
+    def direccion( self ):
         return self.Direccion
-    def enchufes(  ):
+    def enchufes( self ):
         return self.Enchufes
-    def descripcion(  ):
+    def descripcion( self ):
         return self.Descripcion
+    def __str__(self):
+        return self.Nombre +" de " + self.Direccion
+    def __repr__(self):
+        return self.Nombre +" de " + self.Direccion
