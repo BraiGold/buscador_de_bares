@@ -14,12 +14,13 @@ class Bar( object ):
         self.atencion = [ atencion ]
         self.precios = [ precios ]
         self.banos = [ banos ]
-        self.mostrar = 0
 
     def mostrar( self ):
 
         self.mostrar = 1
 
+
+aDarDeAlta = [  ]
 bares = [  ]
 print 'Bienvenido al bucador de bares'
 
@@ -110,7 +111,7 @@ while 1:
                 print 'El nivel de higiene de los banos es entre 1 y 5.\nIngrese nuevamente el nivel de higiene de los banos'
 
         bar = Bar( nom, dire, hora, calif, wifi, enchuf, ruido, com, aten, pre, banos )
-        bares.append(bar)
+        aDarDeAlta.append(bar)
 
         print 'Su bar ha sido agregado.\nEn los proximos dias se procesara la informacion y podra visualizarlo.\n\n'
 
@@ -118,13 +119,9 @@ while 1:
         print 'Bares cercanos\n\n'
     elif op == 3:
         print 'Lista de bares a dar de alta\n\n'
-        aDarDeAlta = set()
         i = 1
-        for bar in bares:
-            if bar.mostrar == 0:
-                print i, '  ', bar.nombre, '  ', bar.direccion, '  ', bar.horarios, '  ', bar.general
-                agregar = set( str(i) )
-                aDarDeAlta = aDarDeAlta | agregar
+        for bar in aDarDeAlta:
+            print i, '  ', bar.nombre, '  ', bar.direccion, '  ', bar.horarios, '  ', bar.general
             i += 1
 
         while 1:
@@ -134,13 +131,14 @@ while 1:
             if op2 == 1:
                 while 1:
                     print 'Ingrese el numero de bar a dar de alta. El numero es la primera columna de la lista.\n'
-                    alta = raw_input()
-                    if alta in aDarDeAlta:
-                        ind = int(alta) - 1
-                        bares[ind].mostrar()
-                        eliminar = set(alta)
-                        aDarDeAlta = aDarDeAlta - eliminar
+                    alta = input()
+                    if alta < i and alta > 0:
+                        darAlta = aDarDeAlta[alta - 1]
+                        darAlta.mostrar()
+                        bares.append(darAlta)
+                        aDarDeAlta.pop(alta - 1)
                         print 'Se a realizado la alta con exito\n\n'
+                        break
                     else:
                         print 'La opcion seleccionada no es correcta.\n'
 
@@ -154,4 +152,3 @@ while 1:
         break
     else:
         print 'La opcion ingresada no es correcta\n.'
-
