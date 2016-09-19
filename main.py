@@ -34,7 +34,9 @@ while 1:
             print '1-Dar de alta un bar.\n2-Volver al menu anterior.'
             op2 = input()
             if op2 == 1:
-                darDeAlta( i )
+                print 'Ingrese el numero de bar a dar de alta. El numero es la primera columna de la lista.\n'
+                alta = input()
+                darDeAlta( i, alta )
             elif op2 == 2:
                 break
             else:

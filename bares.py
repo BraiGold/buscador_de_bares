@@ -25,10 +25,8 @@ aDarDeAlta = [  ]
 bares = [  ]
 
 
-def darDeAlta( i ):
+def darDeAlta( i, alta ):
     while 1:
-        print 'Ingrese el numero de bar a dar de alta. El numero es la primera columna de la lista.\n'
-        alta = input()
         if alta < i and alta > 0:
             darAlta = aDarDeAlta[alta - 1]
             darAlta.mostrar()
