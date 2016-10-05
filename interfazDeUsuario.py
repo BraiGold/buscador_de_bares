@@ -10,7 +10,7 @@ class InterfazDeUsuario:
         print "2. Dar Bar de Alta "
         print "3. Buscar bares cercanos (a menos de 400m) "
         print "4. Mostrar ubicacion de Bar "
-        print "5. Buscar bares "
+        print "5. Ordenar bares "
         entrada = input()
         if entrada == 1:
             self.menuAgregarBar()

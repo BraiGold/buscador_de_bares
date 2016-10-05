@@ -38,5 +38,5 @@ class ListaDeBares:
         interfazMap=InterfazMaps()
         print interfazMap.mostrarMapa(bar.direccion())
 
-    def ordenarBaresPor(criterio1, criterio2):
+    def ordenarBaresPor(self, criterio1, criterio2):
         print 'HACER'
