@@ -9,6 +9,7 @@ class InterfazDeUsuario:
         print "1. Agregar Bar "
         print "2. Dar Bar de Alta "
         print "3. Buscar bares cercanos (a menos de 400m) "
+        print "4. Mostrar ubicacion de Bar "
         entrada = input()
         if entrada == 1:
             self.menuAgregarBar()
@@ -16,6 +17,8 @@ class InterfazDeUsuario:
             self.menuDarBarDeAlta()
         if entrada == 3:
             self.menuBaresCercanos()
+        if entrada == 4:
+            self.menuMostrarBar()
         if entrada !=1 and entrada !=2 and entrada !=3:
             self.menuInicial()
 
@@ -71,3 +74,23 @@ class InterfazDeUsuario:
         print self.listaDeBares.buscarBaresCerca(direc)
         raw_input("toca enter para terminar")
         self.menuInicial()
+
+    def menuMostrarBar(self):
+        print "seleccione el numero de bar a mostrar su ubicacion(-1 para salir): "
+        numeroDeBar=0
+        for bar in self.listaDeBares.Habilitados():
+            print "BAR ("+str(numeroDeBar) +"). "
+            print "Nombre: "+ bar.nombre() +""
+            print "Direccion"+ bar.direccion()+""
+            print "Cantidad de Enchufes:"+str(bar.enchufes()) + ""
+            if int(bar.wifi()) == 1:
+                print "WiFi:"+"Si" + ""
+            else:
+                print "WiFi:"+"No" + ""
+            print "Descripcion: "+bar.descripcion() +""
+            numeroDeBar=numeroDeBar + 1
+        entrada=input()
+        if entrada >= 0 and entrada < len(self.listaDeBares.Habilitados()):
+            self.listaDeBares.mostarBar(self.listaDeBares.Habilitados()[entrada])
+        else:
+            self.menuInicial()   

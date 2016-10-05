@@ -30,3 +30,7 @@ class ListaDeBares:
 
     def Habilitados(self):
         return self.habilitados
+
+    def mostarBar(self,bar):
+        interfazMap=InterfazMaps()
+        print interfazMap.mostrarMapa(bar.direccion())
