@@ -10,6 +10,7 @@ class InterfazDeUsuario:
         print "2. Dar Bar de Alta "
         print "3. Buscar bares cercanos (a menos de 400m) "
         print "4. Mostrar ubicacion de Bar "
+        print "5. Buscar bares "
         entrada = input()
         if entrada == 1:
             self.menuAgregarBar()
@@ -19,6 +20,8 @@ class InterfazDeUsuario:
             self.menuBaresCercanos()
         if entrada == 4:
             self.menuMostrarBar()
+        if entrada == 5:
+            self.menuOrdenarBares()
         if entrada !=1 and entrada !=2 and entrada !=3:
             self.menuInicial()
 
@@ -93,4 +96,20 @@ class InterfazDeUsuario:
         if entrada >= 0 and entrada < len(self.listaDeBares.Habilitados()):
             self.listaDeBares.mostarBar(self.listaDeBares.Habilitados()[entrada])
         else:
-            self.menuInicial()   
+            self.menuInicial()
+
+    def menuOrdenarBares(self):
+        criterios = ["NivelWifi", "NivelRuido", "Atencion", "HigieneBanos", "CalidadComida", "Precios"]
+        print "selcciones los dos criterios por los que se ordenara"
+        print "0. NivelWifi", "1. NivelRuido", "2. Atencion", "3. HigieneBanos", "4. CalidadComida", "5. Precios"
+        print "Ingrese el primer criterio"
+        criterio1 = input()
+        if criterio1 >= 0 and criterio1 <= 5:
+            print "Ingrese el segundo criterio"
+            criterio2 = input()
+            if criterio2 >= 0 and criterio2 <= 5 and criterio2 != criterio1:
+                self.listaDeBares.ordenarBaresPor(criterios[criterio1],criterios[criterio2])
+            else:
+                self.menuInicial()
+        else:
+            self.menuInicial()

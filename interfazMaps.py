@@ -21,5 +21,5 @@ class InterfazMaps:
         return "https://maps.googleapis.com/maps/api/staticmap?center="+ str(latitud) +","+ str(longitud) + "&size=640x400&markers=color:blue%7Clabel:Bar%7C" + str(latitud) +","+ str(longitud) +"&zoom=16"
 
 
-intermap=InterfazMaps()
-print intermap.mostrarMapa("Avenida Cordoba 3100")
+"""intermap=InterfazMaps()
+print intermap.mostrarMapa("Avenida Cordoba 3100")"""
