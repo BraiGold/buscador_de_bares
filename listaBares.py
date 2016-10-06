@@ -1,7 +1,9 @@
+from __future__ import division #division, para calcular promedio
 from bar import Bar
 from interfazBaseDeDatos import InterfazBaseDeDatos
 from interfazMaps import InterfazMaps
 from calificacion import Calificacion
+from operator import itemgetter #sort
 
 class ListaDeBares:
     def __init__(self,BD):
@@ -39,9 +41,18 @@ class ListaDeBares:
         print interfazMap.mostrarMapa(bar.direccion())
 
     def ordenarBaresPor(self, criterio1, numero1, criterio2, numero2):
-        baresQueCumplen=[]
+        baresQueCumplen = []
+        promediosBares = []
         calificaciones = self.puntajes.calificaciones()
+        #print "Calificaciones" #DEBUG
+        #print calificaciones #DEBUG
         for bar in self.Habilitados():
             if calificaciones[criterio1][bar.nombre()] >= numero1 and calificaciones[criterio2][bar.nombre()] >= numero2:
                 baresQueCumplen.append(bar)
-        return baresQueCumplen
+                promedio = ((calificaciones[criterio1][bar.nombre()]+calificaciones[criterio2][bar.nombre()])/2)
+                promediosBares.append(promedio)
+        #print "Promedios:" #DEBUG
+        #print promediosBares #DEBUG        
+        respuesta = [x for (y,x) in sorted(zip(promediosBares,baresQueCumplen),key=lambda pair: pair[0],reverse=True)]
+
+        return respuesta
