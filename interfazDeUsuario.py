@@ -92,10 +92,11 @@ class InterfazDeUsuario:
 
     def menuFiltrarBares(self):
         criterios = ["NivelWifi", "NivelRuido", "Atencion", "HigieneBanos", "CalidadComida", "Precios"]
-        print "selcciones los dos criterios por los que se filtrara(-1 para salir)"
+        print "Seleccione los dos criterios por los que se filtrara(-1 para salir)"
         print "0. NivelWifi", "1. NivelRuido", "2. Atencion", "3. HigieneBanos", "4. CalidadComida", "5. Precios"
         print "Ingrese el primer criterio"
         criterio1 = input()
+        filtrados = []
         if criterio1 >= 0 and criterio1 <= 5:
             print "Ingrese la cantidad de estrellas minimas para el primer criterio(entre 1 y 5)"
             valor1 = input()
@@ -108,8 +109,13 @@ class InterfazDeUsuario:
                 valor2 = input()
                 if valor2 < 1 or valor2 > 5:
                     self.menuFiltrarBares()
-                self.listaDeBares.ordenarBaresPor(criterios[criterio1],valor1,criterios[criterio2],valor2)
+                filtrados = self.listaDeBares.ordenarBaresPor(criterios[criterio1],valor1,criterios[criterio2],valor2)
             else:
                 self.menuFiltrarBares()
         else:
             self.menuInicial()
+        print "\nSeleccione un bar para mostrar su ubicacion(-1 para salir)"
+        self.mostrarListaDeBares(filtrados)
+        entrada = input()
+        if entrada >= 0 and entrada < len(filtrados):
+            self.listaDeBares.mostarBar(filtrados[entrada])
