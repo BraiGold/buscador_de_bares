@@ -115,42 +115,42 @@ class Tests:
         print '\n\n'
         print 'Test de ordenar bares.\n'
         print 'Busco bares por Wifi y Nivel de Ruido con calificacion mayor o igual a 1'
-        baresFiltrados = self.ListaDeBares.buscarBaresPor(0,1,2,1)
+        baresFiltrados = self.listaBares.ordenarBaresPor("NivelWifi",1,"NivelRuido",1)
         #me fijo que los devuelva ordenados por promedio
-        calificaciones = self.ListaDeBares.calificacion()
+        calificaciones = self.listaBares.calificacion()
         promedios = []
-        for bar in self.ListaDeBares.Habilitados():
-            prom= ((calificaciones[0][bar]+calificaciones[1][bar])/2)
+        for bar in self.listaBares.Habilitados():
+            prom= ((self.listaBares.calificacion().darCalificacion(bar.nombre(), "NivelWifi")+self.listaBares.calificacion().darCalificacion(bar.nombre(), "NivelRuido"))/2)
             promedios.append(prom)
         print 'Chequeo que todos los bares habilitados aparezcan en la respuesta '
-        for bar in self.ListaDeBares.Habilitados():
-            ok = false
+        for bar in self.listaBares.Habilitados():
+            ok = 0
             for b in baresFiltrados:
                 if bar == b:
-                    ok = true
-        if ok == true:
+                    ok = 1
+        if ok == 1:
             print 'OK'
-            #print '\n\n'
-            # print 'Chequeo que esten ordenados:'
-            # ok = true
-            # for i in range(len(baresFiltrados))-1:
-            #    i = 0
-            #    for bar in self.listadeBares.Habilitados:
-            #        if bar == baresFiltrados[i]
-            #            pos1 = i
-            #        i = i + 1 
-            #    i = 0 
-            #    for bar in self.listadeBares.Habilitados:
-            #        if bar == baresFiltrados[i]
-            #            pos2 = i
-            #        i = i + 1 
-            # 	if promedios[pos1] < promedios[pos2]:
-            # 		ok = false
-            # if ok:
-            # 	print 'OK'
-            #print 'entonces todos los bares se encuentran en la respuesta y ademas estan ordenados por lo tanto filtra correctamente'
-            #else:
-            #	print 'No están ordenados'
+            print '\n\n'
+            print 'Chequeo que esten ordenados:'
+            ok = 1
+            for i in range(len(baresFiltrados)-1):
+                j = 0
+                for bar in self.listaBares.Habilitados():
+                    if bar == baresFiltrados[i]:
+                        pos1 = j
+                    j = j + 1 
+                j = 0 
+                for bar in self.listaBares.Habilitados():
+                    if bar == baresFiltrados[i+1]:
+                        pos2 = j
+                    j = j + 1 
+             	if promedios[pos1] < promedios[pos2]:
+             		ok = 0
+            if ok == 1:
+             	print 'OK'
+                print 'entonces todos los bares se encuentran en la respuesta y ademas estan ordenados por lo tanto filtra correctamente'
+            else:
+            	print 'No estan ordenados'
         else:
-            print 'hay un bar que no se encuentra en la respuesta'
+            print 'Hay un bar que no se encuentra en la respuesta'
 
