@@ -10,6 +10,7 @@ test1 = Tests(db2)
 test1.testAgregar()
 test1.testDarDeAlta()
 test1.testBuscarBaresCercanos()
+test1.testOrdenarBaresPor()
 
 #test2 = Tests(db)
 #test2.testGlobal()
