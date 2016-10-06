@@ -38,5 +38,10 @@ class ListaDeBares:
         interfazMap=InterfazMaps()
         print interfazMap.mostrarMapa(bar.direccion())
 
-    def ordenarBaresPor(self, criterio1, criterio2):
-        print 'HACER'
+    def ordenarBaresPor(self, criterio1, numero1, criterio2, numero2):
+        baresQueCumplen=[]
+        calificaciones = self.puntajes.calificaciones()
+        for bar in self.Habilitados():
+            if calificaciones[criterio1][bar.nombre()] >= numero1 and calificaciones[criterio2][bar.nombre()] >= numero2:
+                baresQueCumplen.append(bar)
+        return baresQueCumplen
